@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1.0" />
+  <style>
+    body{
+      background: url("../images/err_img/bg.jpg") no-repeat;
+      background-size: cover;
+      text-align: center;
+    }
+    .tip{
+      margin: 8% auto 4%;
+      width: 45%;
+    }
+    .server{
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 767px){
+      body{
+        background: #063a88;
+      }
+      .tip{
+        margin: 18% auto 14%;
+        width: 100%;
+      }
+      .tip img{
+        width: 100%;
+      }
+      .server img{
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="err">
+  <div class="tip"><img src="../images/err_img/404.png" alt=""></div>
+  <div class="server" onclick="serverLink()"><img src="../images/err_img/server.png" alt=""></div>
+</div>
+<script src="../script/jquery18.js"></script>
+<script>
+  function isMobile() {
+    var userAgentInfo = navigator.userAgent;
+    var mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
+    var mobile_flag = false;
+    //根据userAgent判断是否是手机
+    for (var v = 0; v < mobileAgents.length; v++) {
+      if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
+        mobile_flag = true;
+        break;
+      }
+    }
+    var screen_width = window.screen.width;
+    var screen_height = window.screen.height;
+    //根据屏幕分辨率判断是否是手机
+    if(screen_width < 500 && screen_height < 800){
+      mobile_flag = true;
+    }
+    return mobile_flag;
+  }
+  function serverLink() {
+    var mobile_flag = isMobile();
+    if(mobile_flag){
+      window.open(`https://chatai.zb251.com/chat/chatClient/chatbox.jsp?companyID=9043&configID=17&live800_domain=https://${window.location.host}&chatfrom=wap`)
+    }else {
+      window.open(`https://chatai.zb251.com/chat/chatClient/chatbox.jsp?companyID=9043&configID=17&live800_domain=https://${window.location.host}&chatfrom=pc`)
+    }
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>支付宝付款</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+</head>
+<style>
+  .wrapper {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .wrapper h3 {
+    font-size: 24px;
+  }
+  #qrcodeImg img{
+    margin: 0 auto;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  .tc {
+    text-align: center;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .red {
+    color: #D37472;
+  }
+
+  .space-2 {
+    height: 25px;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .header {
+    margin: 40px auto 25px;
+  }
+
+  .header img {
+    width: 40%;
+    max-width: 300px;
+  }
+
+  .hr {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+  }
+
+  .p-txt1 {
+    font-size: 18px;
+
+  }
+
+  #j-downQrcodeBtn {
+    background: #00AAEE;
+    border-radius: 100px;
+    padding: 10px 50px;
+    color: #fff;
+    border: none;
+  }
+
+  a {
+    font-size: 18px;
+    color: #00AAEE;
+  }
+
+  .steps {
+    margin-top: 10px;
+  }
+
+  .steps li {
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+    margin: 10px 0
+  }
+  .steps ul{
+    padding: 0;
+  }
+
+  .steps p {
+    font-size: 14px;
+  }
+
+  .icon {
+    margin: 8px auto;
+    width: 21px;
+    height: 21px;
+    display: block;
+    text-align: center;
+
+  }
+
+  .n1 {
+    background: url(../images/zfb/n1.png) no-repeat center;
+    background-size: 100%;
+  }
+
+  .n2 {
+    background: url(../images/zfb/n2.png) no-repeat center;
+    background-size: 100%;
+  }
+
+  .n3 {
+    background: url(../images/zfb/n3.png) no-repeat center;
+    background-size: 100%;
+  }
+
+  .mt10 {
+    margin: 10px auto !important;
+  }
+
+  .i-scan {
+    background: url(../images/zfb/i-scan.png) no-repeat center;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .i-album {
+    background: url(../images/zfb/i-album.png) no-repeat center;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .i-confirm {
+    background: url(../images/zfb/i-confirm.png) no-repeat center;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+
+
+</style>
+<body>
+<div class="wrapper">
+
+  <div class="container">
+
+    <div class="header">
+      <div class="tc">
+        <img src="../images/zfb/logo.png"/>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="tc">
+      <div class="space-2"></div>
+      <p class="p-txt1">支付金额：<span id="price" class="red"></span> 元</p>
+      <div class="space-2"></div>
+    </div>
+
+    <div class="qrcode-box tc">
+
+      <div id="qrcode" style="display: none"></div>
+      <div id="qrcodeImg"></div>
+      <div class="space-2"></div>
+
+      <p>该订单过期还剩</p>
+      <p id="j-time" class="red">0时5分00秒</p>
+      <div class="space-2"></div>
+
+      <a id="j-downQrcodeBtn" href="" download="">保存二维码</a>
+      <div class="space-2"></div>
+
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="steps">
+      <ul>
+        <li>
+          <p><i class="icon n1"></i></p>
+          <p>支付宝</p>
+          <p>打开"扫一扫"</p>
+          <p><i class="i-scan mt10"></i></p>
+        </li>
+        <li>
+          <p><i class="icon n2"></i></p>
+          <p>从相册选择</p>
+          <p>二维码</p>
+          <p><i class="i-album mt10"></i></p>
+        </li>
+        <li>
+          <p><i class="icon n3"></i></p>
+          <p>确认支付</p>
+          <p class="red">(请勿改动金额)</p>
+          <p><i class="i-confirm mt10"></i></p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script src="../script/qrcode.js"></script>
+<script src="../script/jquery18.js"></script>
+<script>
+  function getQueryString(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2]);
+  }
+
+  var data = ''
+  var price = ''
+  try {
+    data = getQueryString('query')
+    price = getQueryString('price')
+  } catch (err) {
+    data = decodeURIComponent((window.location.href.split('query=')[1]))
+  }
+  if (data) {
+    document.getElementById('price').innerHTML=price
+    new QRCode(document.querySelector('#qrcodeImg'), {
+      text: data,
+      width: 220,
+      height: 220
+    })
+  }else {
+    $("body").html("<h1>支付异常</h1>");
+  }
+
+  $(function () {
+    downloadQrcode();
+    setTimer();
+  });
+
+
+  function downloadQrcode() {
+    $("#j-downQrcodeBtn").click(function (e) {
+      var canvasDataUrl = $('#qrcodeImg img').attr('src');
+      var $that = $(this);
+      $that.attr("href", canvasDataUrl);
+      $that.attr("download", "zfbQrcode.png");
+    });
+  }
+
+  function setTimer() {
+    var timer = "";
+    var m = 4;  //分
+    var s = 59;  //秒
+    getCountdown();
+    timer = setInterval(function () {
+      getCountdown()
+    }, 1000);
+    function getCountdown() {
+      $("#j-time").html("0时0" + m + "分" + s + "秒");
+      if (m == 0 && s == 0) {
+        $('.qrcode-box').html("<div style='width:200px;height:200px;margin:0 auto 30px;border: 1px solid #ddd'><p style='font-size:46px;'>X</p><p>二维码逾时，请重新再试</p></div>")
+        clearInterval(timer);
+      } else if (m >= 0) {
+        if (s > 0) {
+          s--;
+        } else if (s == 0) {
+          m--;
+          s = 59;
+        }
+      }
+    }
+  }
+</script>
+</body>
+</html>

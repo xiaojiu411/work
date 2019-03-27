@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>存款支付</title>
+  <style>
+    .wrapper {
+      text-align: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+    .hide{
+      display: none;
+    }
+
+    .wrapper h3 {
+      font-size: 24px;
+    }
+
+    #QRCode {
+      margin-left: 40px
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div>
+    <h3>请扫描下面的二维码进行支付</h3>
+    <div id="QRCode"></div>
+  </div>
+</div>
+<script src="../script/jquery18.js"></script>
+<script src="../script/qrcode.js"></script>
+<script>
+  function getQueryString(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2]);
+  }
+
+  var data = null
+  try {
+    data = JSON.parse(getQueryString('query'))
+  } catch (err) {
+    data = JSON.parse(decodeURIComponent((window.location.href.split('query=')[1])))
+  }
+  var params = data.params
+  var url = data.url
+
+  $.ajax({
+    type: "post",
+    url: url,
+    async: false,
+    data: JSON.stringify(params),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function (data) {
+      if (data.status == 0) {
+        if (params.showType == '2') {
+          $('.wrapper').removeClass('hide')
+          new QRCode(document.querySelector('#QRCode'), {
+            text: data.qrCode,
+            width: 220,
+            height: 220
+          })
+        } else {
+          $('.wrapper').addClass('hide')
+          window.location.href = data.qrCode
+        }
+      } else {
+        $('.wrapper').addClass('hide')
+        alert(data.message)
+        window.close()
+      }
+    },
+    error: function () {
+      alert('系统异常')
+    }
+  });
+</script>
+</body>
+</html>

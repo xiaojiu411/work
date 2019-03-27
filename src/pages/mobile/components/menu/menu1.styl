@@ -1,0 +1,121 @@
+@import '~common/stylus/variable'
+.mask
+  position: fixed
+  z-index 999
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  background: rgba(0, 0, 0, .7)
+
+.menu-wrapper
+  position fixed
+  z-index 999
+  left: 0
+  top: 0
+  width: 75%
+  height: 100%
+  background: #fff
+  color #434343
+  .icon-close
+    position absolute
+    top 10px
+    right 10px
+    font-size 24px
+  .header
+    color #fff
+    text-align center
+    line-height 24px
+    .top-bar
+      padding 1rem
+      background url("./img/t-bg.png") no-repeat center
+      background-size cover
+      font-size: .8rem
+      line-height: 1.8
+      overflow hidden
+      p
+      line-height 3
+      .price
+        text-align left
+      .btn
+        font-size .9rem
+        float left
+        margin-right 1rem
+        line-height 1.8rem
+        color #fecb20
+        display: inline-block;
+        border: 2px solid #fecb20;
+        border-radius: 1rem;
+        width: 4.5rem;
+        font-weight: bold;
+      .btn.active
+        color #fff
+        background #fecb20
+      .icon-arrow
+        float right
+        font-size .8rem
+
+      .icon-arrow:before
+        content "个人中心"
+      .icon-arrow:after
+        content "\e625"
+      .set
+        color #fff
+    .top-bar.nl
+      background #eeeeee
+      h3
+       font-size 1rem
+      .t-info
+        width: 12rem
+        margin-bottom 1.5rem
+        color: #434343
+      .btn
+        color #6c9eff
+        border: 2px solid #6c9eff
+      .btn.active
+        background #6c9eff
+        color #fff
+      img.avaImg
+        border none
+        background transparent
+    .avatar
+      overflow hidden
+    .avaImg
+      float left
+      width: 3rem
+      height: 3rem
+      border-radius: 3rem
+      border: 2px solid #fff
+      background #04164e
+      img
+        width: 80%;
+        margin: 5%;
+    .t-info
+      float: left
+      width: 7rem
+      margin-top .5rem
+      padding-left: 1rem
+      line-height 1.4
+      text-align: left
+
+
+
+   .main
+     line-height 2.5rem
+     li
+       padding 0 15px
+       border-bottom 1px solid #eee
+       img
+        width 1.5rem
+        margin-right .5rem
+       i
+         margin-right 5px
+         vertical-align middle
+         font-size 20px
+       .icon-arrow
+         float right
+         color #dcdcdc
+
+

@@ -1,0 +1,350 @@
+@import '~common/stylus/variable'
+@import '~common/stylus/mixin'
+
+$radius = 5px
+$nav-height = 90px
+$top-height = 50px
+.top
+  font-size 14px
+  height $top-height
+  background $color-light
+  .top-wrapper
+    display flex
+    justify-content space-between
+    height $top-height
+    transform scale()
+  .notice
+    position relative
+    width 400px
+    line-height $top-height
+    padding-right 15px
+    a
+      margin-right 10px
+    i.arrow
+      position absolute
+      right -10px
+      top 0
+    .notice-sub
+      position absolute
+      z-index 9999
+      top $top-height
+      left 0
+      width 100%
+      padding 20px
+      background #eee
+      line-height 28px
+      .item
+        border-bottom 1px solid $color-border-gray
+        margin-bottom 10px
+        padding-bottom 5px
+        &:last-child
+          border 0
+      h3
+        display flex
+        justify-content space-between
+        span
+          font-weight 600
+      a
+        color $color-light
+  .top-right-wrapper
+    display flex
+    align-items center
+    &.is-logOut form > *
+      margin 0 5px
+    input
+      width 150px
+      line-height 30px
+      border 0
+      background $color-intersperse
+      color $color-light
+      border-radius $radius
+    input:
+    :-webkit-input-placeholder
+      color $color-light
+    .register-btn
+      background $color-danger
+      color $color-light
+    a
+      transition all .3s ease-in
+      &:hover
+        opacity .8
+    &.is-login
+      line-height $top-height
+      .split
+        display block
+        width 1px
+        height 25px
+        margin 0 10px
+        background-image: linear-gradient(to bottom, transparent, #666, transparent)
+      .sub-menu
+        display none
+        &:after
+          content ''
+          position absolute
+          top -10px
+          left 50%
+          margin-left -5px
+          border 5px solid transparent
+          border-bottom-color #eee
+        position absolute
+        z-index 999
+        top $top-height
+        left 0
+        min-width 120px
+        width 100%
+        background #eee
+      .account
+        position relative
+        &:hover .sub-menu
+          display block
+        .sub-menu
+          a
+            display block
+            padding-left 20px
+            &:hover
+              background $color-intersperse
+              color $color-light
+            i
+              margin-right 5px
+
+      .sign
+        position relative
+        .sub-menu
+          width 130px
+          text-align center
+        &:hover .sub-menu
+          display block
+          left 50%
+          top $top-height
+          margin-left -65px
+
+      .user-center-btn
+        background $color-intersperse
+        color #fff
+      .msg
+        position relative
+    &.agent-header
+      & > span, & > a, & > button
+        margin-right 10px
+        line-height $top-height
+        position relative
+
+    .badge
+      width: 10px
+      height: 10px
+      background: red
+      position: absolute
+      border-radius: 10px
+      right: -5px
+      top: 10px
+    .refresh
+      cursor pointer
+      margin-left 5px
+  .scale-big
+    transform scale(2)
+    display inline-block
+    margin-left 5px
+.nav
+  height: $nav-height
+  background $color-nav-background
+  .logo img
+    padding-top 14px
+  .main-nav
+    float right
+    & > li
+      float left
+      position relative
+      a
+        display block
+        padding 0 20px
+        color $color-light
+        transition all .3s ease-in
+        line-height $nav-height
+        font-size 16px
+        &.active, &:hover
+          background $color-intersperse
+        img.hot
+          vertical-align middle
+          margin-right 6px
+          margin-top -10px
+        img.new
+          margin-right 6px
+      &:hover .sub-nav
+        height 109px
+      &:hover .sub-nav-download
+        height 172px
+      .sub-nav
+        position absolute
+        z-index 999
+        left -350px
+        top 89px
+        background rgba(0, 0, 0, .7)
+        width 1300px
+        height 0
+        overflow hidden
+        display flex
+        border-radius 0 0 20px 20px
+        transition all .3s ease-in
+        a
+          flex 1
+          line-height 30px
+          text-align center
+          padding 12px 0
+          &:hover,&.active
+            background transparent
+            color $color-intersperse
+          .icon-box
+            height 55px
+          span
+            display block
+          &:nth-of-type(4) img
+            width 50px
+          &:nth-of-type(5) img
+            position: relative
+            top: 10px
+
+
+      .sub-nav-download
+        position absolute
+        z-index 999
+        top $nav-height
+        right 0
+        background rgba(0, 0, 0, .7)
+        height 0
+        overflow hidden
+        border-radius 0 0 20px 20px
+        transition all .3s ease-in
+        .wr
+          padding 20px
+          p
+            color $color-light
+            text-align center
+            padding-bottom 15px
+            i
+              font-size 22px
+            i:first-child
+              margin-right 20px
+    .icon-arrow-nav
+      margin-left 5px
+
+.color-intersperse
+  color $color-intersperse
+.header
+  .alert-warp
+    position fixed
+    top:0
+    left 0
+    right 0
+    bottom 0
+    background rgba(0,0,0,.6)
+    z-index 999
+  .alert
+    position relative
+    .content
+      position fixed
+      background url(./img/reg-alert.png) no-repeat center
+      width 500px
+      height 600px
+      left 50%
+      top 10%
+      margin-left -250px
+      z-index 99
+      .link
+        display block
+        width 370px
+        margin 0 auto
+        line-height 60px
+        border-radius 40px
+        text-align center
+        font-size 24px
+        cursor pointer
+      a.link-f
+        background #fc6d08
+        color #fff
+        margin-top: 350px;
+        margin-bottom: 20px;
+      a.link-s
+        border 2px solid
+        color #fc6d08
+  .lgcontent
+    position: fixed
+    top: 10%
+    width: 500px
+    height: 600px
+    left: 50%
+    margin-left: -250px
+    background: #fff
+    border-radius: 20px
+    overflow hidden
+    z-index 1000
+    .tip
+      float right
+      text-align: right
+      color: #a0a0a0
+      .link
+        display: inline-block;
+        color: #a0a0a0;
+        margin-bottom: 20px;
+        text-align: right;
+    .topic
+      line-height 80px
+      background #4969a4
+      color #fff
+      font-size: 25px
+      text-align: center
+      b
+        float: right
+        margin-left: -50px
+        padding-right: 30px
+        cursor: pointer
+        font-size: 40px
+    .lg-body
+      padding 20px 40px
+    .input-group
+      background #eee
+      height 50px
+      line-height 50px
+      button
+        border none
+        background #fdcd20
+        color #7c3400
+        width 100%
+        height 100%
+        font-size 17px
+        cursor pointer
+      input
+        width 80%
+        border none
+        background transparent
+      .iconfont
+        font-size: 20px
+        text-indent: 15px
+      .iconfont.eye
+        font-size 16px
+        margin-right 10px
+    .phonecode.input-group
+      input
+        width 48%
+      span
+        flex: 1
+        background: #fdcd20
+        color: #7c3400
+        text-align: center
+        cursor pointer
+      span.discode
+        background #acacac
+        color #fff
+  .phonecode
+    span
+      display: inline-block;
+      background: #f8b651;
+      color: #fff;
+      font-size: 18px;
+      width: 30%;
+      cursor pointer
+      text-align center
+    span.v-code
+      background #404268
+      margin-left: -6px
+      width: 140px
+      font-size: 16px

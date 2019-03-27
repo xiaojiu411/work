@@ -1,0 +1,80 @@
+@import '~common/stylus/variable'
+@import '~common/stylus/mixin'
+
+.bg-wap
+  position: relative
+  background: url(./img/bg1.jpg) no-repeat center 0,
+          url(./img/bg2.jpg) no-repeat center 900px,
+          url(./img/bg3.jpg) no-repeat center 1900px
+  padding: 950px 0 200px
+  overflow: hidden
+  text-align center
+  .t-wrap
+    width 1048px
+    height 620px
+    margin: 70px auto 0px
+  .table
+    width 940px
+    border-collapse: collapse
+    border-spacing: 0
+    font-size 18px
+    margin: 0 auto
+    th
+      background #002e42
+      color #fff
+      padding: 20px 60px
+      border 1px solid #002e42
+    td
+      padding: 20px 60px
+      background transparent
+      color #fff
+      vertical-align:middle
+      border 1px solid #002e42
+  .step
+    margin-top 50px
+  .step,.rule
+    font-size 18px
+    line-height 2
+    color #00a0e9
+    .topic
+      margin 50px 0
+  .rule
+    .c
+      width 900px
+      margin 0 auto
+      text-align left
+      line-height 2.2
+      color #fff
+
+@media screen and (max-width: 767px)
+  body
+    background: #0c0534
+    color: #fff
+    font-size: 35px
+    text-align: center
+    .bg-wap.main
+      background: url(./img/bgm.jpg) no-repeat top center #002130
+      padding-top: 220px
+      overflow: hidden
+      padding-bottom: 60px
+      background-size: contain
+      .t-wrap
+        background transparent
+        width: auto
+        height: auto
+        padding: 0
+        margin: 20px 0
+      .table
+        width 100%
+        th
+          padding: 20px 10px
+        td
+          padding: 20px 10px
+      img
+        width 100%
+      img.t
+        margin 20px auto
+      .rule
+        .c
+          width 90%
+          margin 0 auto

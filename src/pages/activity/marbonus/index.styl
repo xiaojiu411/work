@@ -1,0 +1,136 @@
+@import '~common/stylus/variable'
+@import '~common/stylus/mixin'
+
+.bg-wap
+  position: relative
+  background: url(./img/bg1.jpg) no-repeat center 0 #f6f4ff
+  padding: 900px 0 0
+  overflow: hidden
+  text-align center
+  .content
+    position: relative
+    font-size 18px
+    .d-link
+      position: absolute
+      top: -452px
+      width: 1920px
+      margin: 0 auto
+      left: 50%
+      margin-left: -960px
+      text-align: left
+      padding-left: 360px
+      a
+       margin-right 20px
+    .f-20
+      font-size 20px
+    .t-bar
+      width: 1000px
+      height: 430px
+      margin: 40px auto 100px
+      background: #fff
+      padding-left: 40px
+      .tab-l,.tab-r
+        float left
+        margin-right: 20px
+        h4
+          font-size 20px
+          line-height: 1
+          font-weight: bold
+          margin: 36px 0
+          border-left: 6px solid
+          padding-left 10px
+          text-align: left
+  .table
+    width 450px
+    border-collapse: collapse
+    border-spacing: 0
+    font-size 18px
+    margin: 0 auto
+    tr.tit
+      background: -webkit-linear-gradient(left, #02d6ff , #2067ff); /* Safari 5.1 - 6.0 */
+      background: -o-linear-gradient(right, #02d6ff, #2067ff); /* Opera 11.1 - 12.0 */
+      background: -moz-linear-gradient(right, #02d6ff, #2067ff); /* Firefox 3.6 - 15 */
+      background: linear-gradient(to right, #02d6ff , #2067ff); /* 标准的语法（必须放在最后） */
+    th
+      background transparent
+      color #fff
+      padding: 20px
+      border none
+    td
+      padding: 20px
+      background transparent
+      color #333
+      vertical-align:middle
+      border 1px solid #dcdcdc
+  .rule
+    height 700px
+    background url(./img/bg2.jpg) no-repeat bottom
+    padding-top: 180px
+    img
+      margin-bottom 20px
+    .c
+      width: 1000px
+      padding-left: 400px
+      margin: 0 auto
+      text-align: left
+      line-height: 2.6
+      color: #fff
+      font-size: 18px
+
+@media screen and (max-width: 767px)
+  body
+    background: #f6f4ff
+    color: #fff
+    font-size: 35px
+    text-align: center
+    .bg-wap.main
+      background url("./img/bg-b.png") no-repeat bottom left #f5f4ff
+      padding 0
+      overflow: hidden
+      background-size: contain
+      font-size 14px
+      .mob-p
+        padding 20px 10px 0
+        background #f6f4ff
+        overflow hidden
+      .f-20
+        font-size 14px
+      .t-bar
+        width 100%
+        padding: 0
+        height auto
+        margin: 40px auto
+        .tab-l
+          padding-top 1px
+        .tab-l,.tab-r
+          float inherit
+          margin-right: 0
+      .t-wrap
+        background transparent
+        width: auto
+        height: auto
+        padding: 0
+        margin: 20px 0
+      .table
+        width 100%
+        th
+          padding: 20px 10px
+        td
+          padding: 20px 10px
+      img
+        width 100%
+      img.t
+        margin 20px auto
+      .rule
+        padding: 10px 0 30px;
+        height: auto
+        font-size: 16px
+        background #131b73
+        .c
+          width 90%
+          margin 0 auto
+          padding:0
+          line-height 2
+          font-size 15px
+        img
+          width 30%

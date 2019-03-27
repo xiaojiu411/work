@@ -1,0 +1,67 @@
+@import '~common/stylus/variable'
+@import '~common/stylus/mixin'
+
+.index-main
+  background #eee
+  mobile-wrapper()
+.paddingTop
+  padding-top 7.5rem
+
+.new-top-navs
+  padding .5rem
+  overflow hidden
+  background #fff
+  a
+    position relative
+    float: left
+    display inline-block
+    width 25%
+    text-align center
+    height 8rem
+    img
+      width 100%
+    span
+      width 100%
+      position absolute
+      bottom .8rem
+      left 0
+      font-weight bold
+
+  a:nth-child(7)
+    img
+      position relative
+      top -5px
+
+.section
+  margin .5rem 0
+  background #fff
+  padding .6rem
+  .topic
+    overflow hidden
+    .wrap
+      overflow-x: auto
+      .list
+        width: 1600px
+      .item
+        float left
+        img
+          height: 10rem
+          width: auto
+          border-radius: 10px
+          margin-right: 10px
+    p
+      font-weight: bold
+      margin-bottom: .5rem
+      padding-left: .8rem
+      border-left: 4px solid
+      font-size: 15px
+      a
+        float right
+        font-size 14px
+  img
+    width 100%
+.new-bot
+  text-align center
+  line-height 2
+  img
+    height .9rem

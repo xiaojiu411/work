@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>800登录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1.0" />
+  <style>
+    body{
+      text-align: center;
+    }
+    input{
+      line-height: 30px;
+      margin-bottom: 10px;
+    }
+    .item input{
+      width: 192px;
+      padding-left: 5px;
+    }
+    input.sub{
+      background: #ef8935;
+      color: #fff;
+      padding-left: 0;
+      border: none;
+      width: 200px;
+      line-height: 35px;
+    }
+  </style>
+</head>
+<body>
+<h4>登陆会员账号</h4>
+<div class="item">
+  <input type="text" name="loginname" id="loginname" maxlength="15" placeholder="请输入账号" class="txt" />
+</div>
+<div class="item">
+  <input type="password" name="password" id="password" placeholder="请输入密码" class="txt">
+</div>
+<input type="button" onClick="logins()" value="立即登录" class="sub">
+
+
+<script src="../script/jquery18.js"></script>
+<script>
+  function logins() {
+    var loginname = $("#loginname").val();
+    if (loginname == "" || loginname == "请输入账号") {
+      alert("账号不能为空！");
+      return;
+    }
+    var password = $("#password").val();
+    if (password == "" || password == "请输入密码") {
+      alert("密码不能为空！");
+      return;
+    }
+    $.ajax({
+      url:'/1.0/login',
+      type:'POST',
+      data:JSON.stringify({data:{
+        dialogId: '',
+        loginName: loginname,
+        passWord: password
+    }}),
+      dataType:'JSON',
+      contentType:'application/json',
+      async:'true',
+
+      success:function (res) {
+        // 玩家登入成功
+        if (res.code == "0") {
+          var _data = {
+            type: 0,
+            userId: loginname,
+            name: loginname,
+            loginName: loginname
+          };
+          window.top.postMessage(JSON.stringify(_data), '*');
+          window.localStorage.__isLogin__ = true
+        } else {
+          alert(res.message);
+        }
+      }
+    })
+  }
+</script>
+</body>
+</html>

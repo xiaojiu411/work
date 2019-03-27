@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>支付宝付款</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+</head>
+<style>
+  body {
+    font-family: "Arial, 'microsoft yahei'";
+    height: 100%;
+    min-height: 100%;
+    background: #cccccc;
+    color: #616161;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .red {
+    color: red !important;
+  }
+
+  .orange {
+    color: #ff6000 !important;
+    font-weight: 900;
+  }
+
+  .book-box {
+    margin: 15px auto;
+    height: 64px;
+  }
+
+  .book-box .p0 {
+    line-height: 37px;
+  }
+
+  .content01 {
+    background: #eff0f1;
+  }
+
+  .book-box .p-txt1,
+  .book-box .p-txt3 {
+    font-size: 16px;
+    padding: 0 15px 0px 15px;
+    word-break: break-all;
+  }
+
+  .h1 {
+    font-size: 36px;
+  }
+
+  .h2 {
+    font-size: 28px;
+  }
+
+  .h3 {
+    font-size: 20px;
+  }
+
+  .fl {
+    float: left;
+  }
+
+  .fr {
+    float: right;
+  }
+
+  .logo-left {
+    text-align: left;
+    float: none;
+    font-size: 36px;
+    font-weight: 900;
+    margin-top: 22px;
+  }
+
+  .content02 {
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content02 p {
+    margin: 10px 0;
+    color: #81868c;
+  }
+
+  #qrcode-box img {
+    width: 208px;
+    height: 208px;
+    margin: 2px auto;
+  }
+
+  #qrcode-box {
+    width: 250px;
+    height: 260px;
+    margin: 0 auto;
+    border: 1px solid #81868b;
+    overflow: hidden;
+  }
+
+  #qrcode canvas {
+    margin-top: 12px;
+  }
+
+  .header {
+    height: 96px;
+    background: rgba(255, 255, 255, .99);
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .footer {
+    padding: 15px 0;
+    background: #eff0f1;
+  }
+
+  .header-in,
+  .footer-in {
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .header-in, footer-in, .content {
+    width: 900px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+  }
+
+  #alipay img {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+  }
+
+  #scan-box {
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  #scan-box p {
+    margin: 0px;
+  }
+
+  .i-scanpc {
+    background: url(../images/zfb-pc/i-scanpc.png) no-repeat;
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: relative;
+    top: 8px;
+  }
+
+
+
+</style>
+<body>
+<header class="header">
+  <div class="header-in">
+    <div class="logo-left">
+      <img src="../images/zfb/logo.png" height="55"/>
+    </div>
+  </div>
+</header>
+<div class="content-box">
+  <div class="content" id="pageOne">
+    <div class="content01">
+      <div class="book-box clear">
+        <p class="p0 p-txt1 fl">（二维码仅本次有效，下次存款请重新获取。）</p>
+        <p class="p0 p-txt3 fr"><span class="price orange h2"></span> 元</p>
+      </div>
+    </div>
+    <div class="content02">
+
+      <div class="content">
+
+        <p class="h3">扫一扫付款（元）</p>
+        <p class="orange h1 price"></p>
+
+        <div id="qrcode-box">
+          <div id="qrcodeImg">
+
+          </div>
+          <div id="scan-box" class="clear">
+            <div class="fl">
+              <i class="i-scanpc"></i>
+            </div>
+            <div class="fr">
+              <p>该订单过期还剩</p>
+              <p id="j-time" class="red">0时5分00秒</p>
+            </div>
+          </div>
+        </div>
+        <p>首次使用请下载手机支付宝</p>
+        <div id="alipay">
+          <img src="../images/zfb-pc/i-alipay.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="footer">
+  <div class="footer-in">
+    <p>本站为第三方辅助软件服务商，与支付宝官方和淘宝网无任何关系</p>
+    <p>支付系统不提供资金托管和结算，转账后将立即到达指定的账户。</p>
+  </div>
+</header>
+
+
+<script src="../script/qrcode.js"></script>
+<script src="../script/jquery18.js"></script>
+<script>
+  function getQueryString(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2]);
+  }
+
+  var data = ''
+  var price = ''
+  try {
+    data = getQueryString('query')
+    price = getQueryString('price')
+  } catch (err) {
+    data = decodeURIComponent((window.location.href.split('query=')[1]))
+  }
+  if (data) {
+    $('.price').html(price)
+    new QRCode(document.querySelector('#qrcodeImg'), {
+      text: data,
+      width: 220,
+      height: 220
+    })
+  }
+  else {
+    $("body").html("<h1>支付异常</h1>");
+  }
+
+  $(function () {
+    downloadQrcode();
+    setTimer();
+  });
+
+
+  function downloadQrcode() {
+    $("#j-downQrcodeBtn").click(function (e) {
+      var canvasDataUrl = $('#qrcodeImg img').attr('src');
+
+      var $that = $(this);
+      $that.attr("href", canvasDataUrl);
+      $that.attr("download", "zfbQrcode.png");
+    });
+  }
+
+  function setTimer() {
+    var timer = "";
+    var m = 4;  //分
+    var s = 59;  //秒
+    getCountdown();
+    timer = setInterval(function () {
+      getCountdown()
+    }, 1000);
+    function getCountdown() {
+      $("#j-time").html("0时0" + m + "分" + s + "秒");
+      if (m == 0 && s == 0) {
+        $('#qrcode-box').html("<div style='width:200px;height:200px;margin:0 auto 30px;'><p style='font-size:46px;'>X</p><p>二维码逾时，请重新再试</p></div>")
+        clearInterval(timer);
+      } else if (m >= 0) {
+        if (s > 0) {
+          s--;
+        } else if (s == 0) {
+          m--;
+          s = 59;
+        }
+      }
+    }
+  }
+
+</script>
+</body>
+</html>
